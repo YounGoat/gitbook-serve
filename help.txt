@@ -1,0 +1,11 @@
+
+NAME
+    gitbookserve - Run "gitbook serve" under current directory.
+    gbs - Alias of "gitbookserve".
+
+SYNOPSIS
+    gbs
+    Run "gitbook serve" under current directory.
+
+    gbs help
+    Show this help info.

@@ -2,7 +2,7 @@
 
 Notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 
-##	[0.0.1] - 2017-11-8
+##	[0.0.3] - 2017-11-8
 
 Released.
 

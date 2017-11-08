@@ -14,6 +14,20 @@ const MODULE_REQUIRE = 1
     , getPort = require('./lib/getPort')
     ;
 
+if (process.argv[2] == 'help') {
+    console.log(fs.readFileSync(path.join(__dirname, 'help.txt'), 'utf8'));
+    process.exit(0);
+}
+
+if (1) {
+    let ret = child_process.spawnSync('gitbook', [ '--version' ]);
+    if (ret.error) {
+        console.error('Command "gitbook" not found.');
+        console.info('Please install NPM package "gitbook-cli" globally.');
+        process.exit(1);
+    }
+}
+
 let items = fs.readdirSync(process.cwd());
 let readmeFound = false;
 for (var i = 0; i < items.length; i++) {
@@ -23,8 +37,8 @@ for (var i = 0; i < items.length; i++) {
     }
 }
 if (!readmeFound) {
-    console.log('README.md not found.');
-    console.log('Are you sure this is a gitbook project?');
+    console.error('README.md not found.');
+    console.info('Are you sure this is a gitbook project?');
 }
 else {
     getPort(4000, (port) => {
