@@ -1,7 +1,7 @@
 #   gitbook-serve
 __快速并行启动 gitbook 服务实例__
 
-其他语言版本：[English](./README.md)
+其他语言 / [English](./README.md)
 
 在编辑 GitBook 项目时，我们可以借助 [gitbook-cli](https://www.npmjs.com/package/gitbook-cli) 提供的 `gitbook serve` 命令启动一个 HTTP 服务实例并在浏览器中接近实时地预览编辑效果。但是，在编辑两个以上的 GitBook 项目时，如果需要同时预览这些项目，我们需要通过手动添加 `--port` 和 `--lrport` 参数，为每个服务指定可用的端口，这实在是相当麻烦（尤其是你不知道有哪些端口可用时）。__gitbook-serve__ 将帮助你解决这个问题。
 
