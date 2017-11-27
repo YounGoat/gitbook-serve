@@ -1,6 +1,6 @@
 {
     "name": "gitbook-serve",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "description": "Easily serve more gitbooks simultaneously.",
     "main": "index.js",
     "scripts": {

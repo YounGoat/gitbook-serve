@@ -28,23 +28,38 @@ if (1) {
     }
 }
 
-let items = fs.readdirSync(process.cwd());
-let readmeFound = false;
-for (var i = 0; i < items.length; i++) {
-    if (items[i].toLowerCase() == 'readme.md') {
-        readmeFound = true;
-        break;
+if (1) {
+    let items = fs.readdirSync(process.cwd());
+    let bookJsonFound = false;
+    let readmeFound = false;
+    for (var i = 0; i < items.length; i++) {
+        let name = items[i].toLowerCase();
+        readmeFound || (readmeFound = name == 'readme.md');
+        bookJsonFound || (bookJsonFound = name == 'book.json');
+    }
+
+    if (!readmeFound) {
+        console.error('README.md not found.');
+        console.info('Are you sure this is a gitbook project?');
+        process.exit(1);
+    }
+
+    if (bookJsonFound) {
+        let bookJson = require(path.join(process.cwd(), 'book.json'));
+        bookJson.plugins.forEach((name) => {
+            let moduleName = `gitbook-plugin-${name}`;
+            let modulePath = path.join(process.cwd(), 'node_modules', moduleName);
+            if (!fs.existsSync(modulePath)) {
+                console.log(`install ${moduleName} ...`);
+                child_process.spawnSync('npm', [ 'install', moduleName ]);
+            }
+        });
     }
 }
-if (!readmeFound) {
-    console.error('README.md not found.');
-    console.info('Are you sure this is a gitbook project?');
-}
-else {
-    getPort(4000, (port) => {
-        getPort(35729, (lrport) => {
-            let options = { stdio: [ null, process.stdout, process.stderr ] };
-            child_process.spawn('gitbook', [ 'serve', '--port', port, '--lrport', lrport ], options);
-        });
+
+getPort(4000, (port) => {
+    getPort(35729, (lrport) => {
+        let options = { stdio: [ null, process.stdout, process.stderr ] };
+        child_process.spawn('gitbook', [ 'serve', '--port', port, '--lrport', lrport ], options);
     });
-}
+});
