@@ -1,10 +1,11 @@
 {
     "name": "gitbook-serve",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Easily serve more gitbooks simultaneously.",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node start"
     },
     "bin": {
         "gitbookserve": "index.js",
@@ -21,7 +22,10 @@
         "url": "https://youngoat.github.io"
     },
     "license": "ISC",
-    "dependencies": {},
+    "dependencies": {
+        "noda": "^0.1.2",
+        "portman": "^0.0.3"
+    },
     "devDependencies": {},
     "directories": {},
     "homepage": "https://github.com/YounGoat/gitbook-serve",

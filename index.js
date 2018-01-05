@@ -9,13 +9,14 @@ const MODULE_REQUIRE = 1
     , path = require('path')
 
     /* NPM */
+    , noda = require('noda')
+    , portman = require('portman')
     
     /* in-package */
-    , getPort = require('./lib/getPort')
     ;
-
+    
 if (process.argv[2] == 'help') {
-    console.log(fs.readFileSync(path.join(__dirname, 'help.txt'), 'utf8'));
+    console.log(noda.inRead('help.txt', 'utf8'));
     process.exit(0);
 }
 
@@ -57,8 +58,8 @@ if (1) {
     }
 }
 
-getPort(4000, (port) => {
-    getPort(35729, (lrport) => {
+portman.seekUsable('>=4000', (err, port) => {
+    portman.seekUsable('>=35729', (err, lrport) => {
         let options = { stdio: [ null, process.stdout, process.stderr ] };
         child_process.spawn('gitbook', [ 'serve', '--port', port, '--lrport', lrport ], options);
     });
